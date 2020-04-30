@@ -1,0 +1,88 @@
+import java.util.Scanner;
+import java.lang.*;
+/*
+ * Protocollo della classe "Board":
+ * 
+ * Board b = new Board(n);
+ * 
+ * b.size()           : int
+ * b.queensOn()       : int
+ * b.underAttack(i,j) : boolean
+ * b.arrangement()    : String
+ * b.addQueen(i,j)    : Board
+ * 
+ */
+
+public class Board {
+  
+  private final int size;
+  private int table[][];
+  
+  public Board( int n ) {
+    
+    size = n;
+    table = new int[size][size];
+  }
+  
+  public int size() {
+    
+    return size;
+  }
+  
+  public int queensOn() {
+    int count = 0;
+    for (int i=0; i<size; i++) 
+      for (int j=0; j<size; j++)
+      if (table[i][j] == 1) 
+      count++;
+    return count;
+  }
+  
+  public boolean underAttack( int i, int j ) {
+    boolean change = false;
+    if (table[i][j] == 1) {
+      table[i][j] = 0;
+      change = true;
+    }
+    
+    boolean under = false; // cambiata a true se si trova uno scacco da parte di altra regina
+    
+    // controllo sulla stessa riga
+    for (int x=i, y=0; y<size; y++){
+      if(table[x][y] == 1) {
+        System.out.print("Because of " + x + "," + y + " Queen");
+        under = true;
+      }
+    }
+    
+    // trovo il punto di partenza per la diagonale dx (da 0,0 a 3,3)
+    int a = i;
+    int b = j;
+    // Azzero la diagonale, es. se sero a 3,3 torno a 0,0
+    while ( a>0 && b>0 ){
+      a--;
+      b--;
+    }
+    // Discesa diagonale a destra
+    
+    for (int x=a, y=b; (x<size && y<size); x++, y++){
+      if (table[x][y] == 1) {
+        System.out.print("Because of " + x + "," + y + " Queen");
+        under = true;
+      }
+    }
+    
+    // Devo trovare il punto di partenza per la diagonale a sx (da 0,3 a 3,0)
+    a = j;
+    b = j;
+    // Azzero la diagonale
+    while ( a>0 && b<(size-1)) {
+      a--;
+      b++;
+    }
+      
+  
+  }
+  
+  
+}

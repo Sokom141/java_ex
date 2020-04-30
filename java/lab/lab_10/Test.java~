@@ -1,0 +1,8 @@
+public class Test {
+  
+  public test() {
+    public list = new StringSList();
+    list.isNull();
+    list.length();
+  }
+}

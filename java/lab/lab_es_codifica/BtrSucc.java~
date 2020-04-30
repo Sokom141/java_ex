@@ -1,0 +1,8 @@
+public class BtrSucc {
+  
+  public static BtrSucc( String btr ){
+    final int length = btr.length();
+    final String lsb = btr.substring( length-2 )
+  }
+  
+} // BtrSucc

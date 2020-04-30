@@ -1,0 +1,12 @@
+public class Queens {
+  
+  public static int numeroDiSoluzioni( int n ){
+    
+    numeroDiCompletamenti( new Board(n) )
+  }
+  
+  private static int numeroDiCompletamenti( Board b ){
+    
+  }
+  
+}

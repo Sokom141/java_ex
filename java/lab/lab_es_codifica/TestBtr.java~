@@ -1,0 +1,8 @@
+public class TestBtr {
+  
+  public static test(){
+    s = BtrSucc("+-.");
+    s.a()
+  }
+  
+}
