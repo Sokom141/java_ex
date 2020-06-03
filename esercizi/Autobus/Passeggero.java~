@@ -1,0 +1,22 @@
+class Passeggero {
+  
+  private String nome;
+  private double pesoKg;
+  
+  public Passeggero(String nome, double pesoKg) {
+    
+    nome = nome;
+    pesoKg = pesoKg;
+  }
+  
+  public String getNome(){
+    
+    return nome;
+  }
+  
+  public double getPesoKg(){
+    
+    return pesoKg;
+  }
+
+}

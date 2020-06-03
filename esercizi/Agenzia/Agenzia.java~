@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+
+class Agenzia {
+  
+  private final String nome_agenzia;
+  private final String telefono_agenzia;
+  private ArrayList<Immobile> lista_immobili = new ArrayList<Immobile>();
+  
+  public Agenzia(String nome, String telefono){
+    
+    nome_agenzia = nome;
+    telefono_agenzia = telefono;
+  }
+  
+  public String getNome() {
+    
+    return nome_agenzia;
+  }
+  
+  public String getTelefono() {
+    
+    return telefono_agenzia;
+  }
+  
+  public int aggiungi(Immobile im){
+    
+    lista_immobili.add(im);
+    return lista_immobili.size();
+  }
+  
+}

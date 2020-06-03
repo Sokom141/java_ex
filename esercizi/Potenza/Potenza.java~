@@ -1,0 +1,20 @@
+public class Potenza{
+  
+  static int x;
+  
+  public Potenza(int base) {
+    
+    x = base;
+  }
+  
+  public int pow(int esponente) {
+    
+    int result = x**esponente;
+    return result;
+  }
+  
+  public cambiobase(int nuova_base){
+    
+    x = nuova_base;
+  }
+}

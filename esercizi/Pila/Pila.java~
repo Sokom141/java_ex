@@ -1,0 +1,11 @@
+class Pila{
+  
+  private int[] array;
+  
+  public Pila(int[] n){
+    
+    for (int i; i<=n.length(); i++) {
+      array[i] = n[i];
+    }
+  }
+}
