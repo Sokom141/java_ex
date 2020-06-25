@@ -29,30 +29,40 @@ public class Queens {
     }
   }
   
-  public static StringSList listaDiSoluzioni( int n ) {
+  public static SList<Board> listaDiSoluzioni( int n ) {
     
     return listaDiCompletamenti( new Board(n) );
   }
   
-  public static StringSList listaDiCompletamenti( Board b ){
+  public static SList<Board> listaDiCompletamenti( Board b ){
    
     int n = b.size();
     int q = b.queensOn();
     
     if( q == n ) {
       
-      return ( StringSList.NULL_STRINGLIST.cons( b.arrangement() ) );
+      return ( (new SList<Board>()).cons( b ) );
     } else {
      
       int i = q + 1;
-      StringSList sl = StringSList.NULL_STRINGLIST;
+      SList<Board> bl = new SList<Board>();
       for ( int j=1; j<=n; j++){
         if ( !b.underAttack(i, j) ){
-          sl = sl.append( listaDiCompletamenti( b.addQueen(i, j) ));
+          bl = bl.append( listaDiCompletamenti( b.addQueen(i, j) ));
         }
       }
-      return sl;
+      return bl;
     }
   }
   
+  public static SList<Integer> numeriDiSoluzioni( int m, int n) {
+    
+    if ( m > n) {
+      
+      return ( new SList<Integer>() );
+    } else {
+      
+      return (numeriDiSoluzioni( m+1, n ).cons(numeroDiSoluzioni(m)) );
+    }
+  }
 }

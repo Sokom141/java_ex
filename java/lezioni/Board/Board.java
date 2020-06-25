@@ -73,4 +73,9 @@ public class Board {
                      config + " " + COLS.substring(j,j+1) + ROWS.substring(i,i+1) + " "
                        );
   }
+  
+  public String toString() {
+    
+    return arrangement();
+  }
 }
