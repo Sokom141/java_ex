@@ -1,3 +1,4 @@
+// completo
 public class StringSList {
   
   public static final StringSList NULL_STRINGLIST = new StringSList();

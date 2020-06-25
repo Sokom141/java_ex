@@ -1,3 +1,4 @@
+//todo
 class Board{
   
   private final int size;

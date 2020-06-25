@@ -136,7 +136,7 @@ class Tavoletta{
       int k = getNumber();
       find(k);
       move(num_pos[0], num_pos[1], zero_pos[0], zero_pos[1]);
-      config(); // debug
+      //config(); // debug
     }
   }
   

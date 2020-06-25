@@ -21,7 +21,7 @@ public class Board {
   
   private final int size;
   private final int queens;
-  private final BiPredicate<Integer,Integer> attack;
+  private final BiPredicate<Integer,Integer> attack; // Predicato True/False Funzionale
   private final String config;
   // private int table[][];
   
@@ -35,7 +35,7 @@ public class Board {
   }
   
   private Board( int n, int q, BiPredicate<Integer, Integer> p, String c ) {
-   
+    
     size = n;
     queens = q;
     attack = p;
@@ -54,7 +54,7 @@ public class Board {
   
   public boolean underAttack( int i, int j ) {
     
-    return attack.test( i, j );
+    return attack.test( i, j ); // (attack i j)
   }
   
   public String arrangement() {
@@ -67,8 +67,10 @@ public class Board {
     return new Board(
                      size,
                      queens + 1,
-                     ( x, y) -> ,
+                     ( x, y ) -> ( (x == i) || (y == j) ||
+                                   (x-y == i-j) || (x+y == i+j) || 
+                                   (attack.test(x, y)) ),
                      config + " " + COLS.substring(j,j+1) + ROWS.substring(i,i+1) + " "
                        );
-     
+  }
 }

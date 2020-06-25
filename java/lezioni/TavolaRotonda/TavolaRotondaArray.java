@@ -15,7 +15,7 @@ public class TavolaRotondaArray {
     cavalieri = cav;
   }
   
-  public int numeroDiCav() {
+  public int numeroDiCavalieri() {
     
     return cavalieri.length;
   }
@@ -27,13 +27,13 @@ public class TavolaRotondaArray {
   
   public TavolaRotondaArray dopoUscitaCav() {
     
-    int n = cavalieri.length - 1;
-    int[] cav = new int[n];
-    for (int i=0; i<n-1; i=i+1) {
+    int n = cavalieri.length;
+    int[] cav = new int[n-1];
+    for (int i=0; i<n-2; i=i+1) {
       
       cav[i] = cavalieri[i+2];
     }
-    cav[n-1] = cavalieri[0];
+    cav[n-2] = cavalieri[0];
     
     return new TavolaRotondaArray(cav);
   }
