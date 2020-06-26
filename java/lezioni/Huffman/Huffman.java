@@ -70,4 +70,45 @@ public class Huffman {
     }
   }
   
+  public static String flattenTree( Node n ) {
+    
+    if ( n.isLeaf() ) {
+      char c = n.character();
+      if (( c == '@' ) || ( c == '\\')) {
+        return "\\" + c;
+      } else {
+        return "" + c;
+      }
+    } else {
+      return "@" + flattenTree( n.left() ) 
+                 + flattenTree( n.right() );
+    }
+  }
+  
+  public static void compress( String src, String dst ) {
+  
+    int[] freq = freqHistogram( src );
+    Node root = huffmanTree( freq );
+    String[] codes = codeTable( root );
+    
+    int size = root.weight();
+    String ht = flattenTree( root );
+    
+    InputTextFile in = new InputTextFile(src);
+    OutputTextFile out = new OutputTextFile(dst);
+    
+    out.writeTextLine( "" + size );
+    out.writeTextLine( ht );
+    
+    for ( int i = 0; i<size; i++ ) {
+      
+      char c = in.readChar();
+      out.writeCode( codes[c] );
+    }
+    
+    
+    in.close();
+    out.close();
+  }
+    
 }
