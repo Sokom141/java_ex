@@ -1,8 +1,11 @@
+/*
+ * Huffman Iterativo
+ */
 import java.util.*;
 
 import huffman_toolkit.*;
 
-public class Huffman {
+public class HuffmanIter {
   
   private static final int CHARS = InputTextFile.CHARS;
   
@@ -54,35 +57,50 @@ public class Huffman {
     
     String[] codes = new String[CHARS];
     
-    fillTable( root, "", codes );
+    Stack<Frame> stack = new Stack<Frame>();
+    stack.push( new Frame(root, "") );
     
+    while( !stack.empty() ) {
+      
+      Frame f = stack.pop();
+      Node n = f.node;
+      String pre = f.pre;
+      
+      if ( n.isLeaf() ) { 
+        char c = n.character();
+        codes[c] = pre;
+      } else {
+        stack.push( new Frame( n.right(), pre + "1") );
+        stack.push( new Frame( n.left(), pre + "0") );
+      }
+    }
     return codes;
   }
   
-  private static void fillTable( Node n, String pre, String[] codes ) {
+  public static String flattenTree( Node root ) {
     
-    if ( n.isLeaf() ) { 
-      char c = n.character();
-      codes[c] = pre;
-    } else {
-      fillTable( n.left(), pre + "0", codes);
-      fillTable( n.right(), pre + "1", codes);
-    }
-  }
-  
-  public static String flattenTree( Node n ) {
+    String ht = "";
+    Stack<Node> stack = new Stack<Node>();
+    stack.push( root );
     
-    if ( n.isLeaf() ) {
-      char c = n.character();
-      if (( c == '@' ) || ( c == '\\')) {
-        return "\\" + c;
+    while ( !stack.empty() ) {
+      
+      Node n = stack.pop();
+      
+      if ( n.isLeaf() ) {
+        char c = n.character();
+        if (( c == '@' ) || ( c == '\\')) {
+          ht += "\\" + c;
+        } else {
+          ht += c;
+        }
       } else {
-        return "" + c;
+        ht += "@";
+        stack.push( n.right() );
+        stack.push( n.left() );
       }
-    } else {
-      return "@" + flattenTree( n.left() ) 
-                 + flattenTree( n.right() );
     }
+    return ht;
   }
   
   public static void compress( String src, String dst ) {
