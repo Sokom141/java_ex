@@ -3,10 +3,10 @@ class Board{
   private final int size;
   private final int queens;
   private final String config;
-  private final IntSList COLS;
-  private final IntSList ROWS;
-  private final IntSList DgP;
-  private final IntSList DgM;
+  private final SList<Integer> COLS;
+  private final SList<Integer> ROWS;
+  private final SList<Integer> DgP;
+  private final SList<Integer> DgM;
   private final String RIGHE = "123456789ABCDEF";
   private final String COLONNE = "abcdefghijklmno";
   
@@ -15,14 +15,14 @@ class Board{
     
     size = n;
     queens = 0;
-    COLS = IntSList.NULL_INTLIST;
-    ROWS = IntSList.NULL_INTLIST;
-    DgP = IntSList.NULL_INTLIST;
-    DgM = IntSList.NULL_INTLIST;
+    COLS = new SList<Integer>();
+    ROWS = new SList<Integer>();
+    DgP = new SList<Integer>();
+    DgM = new SList<Integer>();
     config = "< ";
   }
     
-  private Board(int n, int q, IntSList cols, IntSList rows, IntSList dgP, IntSList dgM, String c) {
+  private Board(int n, int q, SList<Integer> cols, SList<Integer> rows, SList<Integer> dgP, SList<Integer> dgM, String c) {
     
     size = n;
     queens = q;
@@ -48,7 +48,7 @@ class Board{
     return underAttackRec(x, y, COLS, ROWS, DgP, DgM);
   }
   
-  private boolean underAttackRec(int i, int j, IntSList cols, IntSList rows, IntSList dgP, IntSList dgM) {
+  private boolean underAttackRec(int i, int j, SList<Integer> cols, SList<Integer> rows, SList<Integer> dgP, SList<Integer> dgM) {
     
     if ( cols.isNull() && rows.isNull() && dgP.isNull() && dgM.isNull() ) {
       

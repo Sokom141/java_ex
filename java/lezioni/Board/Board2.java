@@ -61,9 +61,9 @@ public class Board2 {
   public boolean underAttack( int i, int j ) {
     
     return ( (rowAttack[i-1] > 0) || 
-             (colAttack[j-1] > 0) ||
-             (dg1Attack[i-j+size-1] > 0) ||
-             (dg2Attack[i+j-2] > 0) );
+            (colAttack[j-1] > 0) ||
+            (dg1Attack[i-j+size-1] > 0) ||
+            (dg2Attack[i+j-2] > 0) );
   }
   
   public String arrangement() {
@@ -79,10 +79,10 @@ public class Board2 {
     dg1Attack[i-j+size-1] += 1;
     dg2Attack[i+j-2] += 1;
     config = config + " " + COLS.substring(j, j+1)
-                          + ROWS.substring(i, i+1) + " ";
+      + ROWS.substring(i, i+1) + " ";
   }
   
-    public void rmQueen( int i, int j ) {
+  public void rmQueen( int i, int j ) {
     
     queens -= 1;
     rowAttack[i-1] -= 1;
@@ -90,7 +90,7 @@ public class Board2 {
     dg1Attack[i-j+size-1] -= 1;
     dg2Attack[i+j-2] -= 1;
     String pos = " " + COLS.substring(j, j+1)
-                     + ROWS.substring(i, i+1) + " ";
+      + ROWS.substring(i, i+1) + " ";
     int k = config.indexOf( pos );
     config = config.substring(0, k) + config.substring(k+4);
   }

@@ -1,35 +1,35 @@
 
 public class BtrSucc {
-  
-  int length;
-  String lsb;
-  String pre;
+      
+  public static String btrSucc( String btr ){
     
-  public BtrSucc( String btr ){
-    // length = btr.length();
-    // lsb = btr.substring( length-1 );
-    next( btr );
+    return next( btr );
   }
   
-  public String next( String s ) {
+  private static String next( String s ) {
     
-    length = s.length();
-    lsb = s.substring( length-1 );
-    if ( s.length() == 1 ) {
-      if (lsb == "+") {
+    int len = s.length();
+    String lsb = s.substring( len-1 );
+    
+    if ( len == 1 ) {
+
+      if ( lsb.equals("+") ) {
         return "+-";
       } else {
         return "+";
       }
     } else {
-      pre = s.substring( 0, length-1);
-      if (lsb == "+") {
+      
+      String pre = s.substring( 0, len-1);
+      if ( lsb.equals("+") ) {
+        
         return next(pre) + "-";
       } else {
-        if ( lsb == "-") {
-          return next(pre) + ".";
+        
+        if ( lsb.equals("-") ) {
+          return pre + ".";
         } else {
-          return next(pre) + "+";
+          return pre + "+";
         }
       }
     }
