@@ -41,7 +41,7 @@ class LlisLab {
   }
   
   public static IntSList lis( int[] s ) { // restituisce la lista della sottosequenza più lunga
-    34, 465, 481, 491,
+ 
     final int n = s.length;
     IntSList l = IntSList.NULL_INTLIST;
     
@@ -58,7 +58,7 @@ class LlisLab {
     return lisRec(s, 0, l, 0, s_mem);
   }
   
-  private static IntSList lisRec(int[] s, int i, IntSList l, int t, IntSList[][][] m){
+  private static IntSList lisRec(int[] s, int i, IntSList l, int t, IntSList[][][] m) {
     
     final int n = s.length;
     
