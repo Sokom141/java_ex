@@ -19,7 +19,7 @@ class Board{
     ROWS = new SList<Integer>();
     DgP = new SList<Integer>();
     DgM = new SList<Integer>();
-    config = "< ";
+    config = "";
   }
     
   private Board(int n, int q, SList<Integer> cols, SList<Integer> rows, SList<Integer> dgP, SList<Integer> dgM, String c) {
@@ -73,7 +73,7 @@ class Board{
   
   public String toString() {
    
-    return arrangement() + ">";
+    return "<" + arrangement() + ">";
   }
   
   public Board addQueen(int i, int j){
@@ -87,7 +87,7 @@ class Board{
                      (config + " " +
                       COLONNE.substring(i-1, i) +
                       RIGHE.substring(j-1, j) +
-                      " |") );
+                      " ") );
   }
   
 } // class Board

@@ -29,7 +29,7 @@ class CodificaHuffman{
       } else if ( c == '\r' ) {
         s = "\\r";
       }
-           
+      
       int len;
       
       if( huff_code[i] == null ) {
@@ -59,6 +59,29 @@ class CodificaHuffman{
     }
     
     out.close();
+  }
+  
+  public static String stima( String src ){
+    
+    
+    int[] freq = Huffman.charHistogram( src );                     // istogramma delle frequenze
+    Node root = Huffman.huffmanTree( freq );                        // albero di Huffman
+    int header = Huffman.flattenTree(root).length();
+    int count = root.weight();                              // numero complessivo di caratteri
+    int result = 0;   
+    String[] codes = Huffman.huffmanCodesTable( root );
+    InputTextFile in = new InputTextFile(src);
+    
+    for ( int j=0; j<count; j++ ) {                       // scansione: codifica dei caratteri
+      
+      char c = in.readChar();
+      result += codes[c].length();
+
+    }
+    
+    result /= 7;
+    in.close();
+    return "Stima file compresso: " + (header + result) ;
   }
   
 }

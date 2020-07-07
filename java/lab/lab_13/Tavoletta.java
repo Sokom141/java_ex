@@ -7,7 +7,7 @@ class Tavoletta{
   private int[][] griglia; 
   private int[] zero_pos = {0,0}; // { x, y } dello zero, cioè il tassello mancante
   private int[] num_pos = {0,0};
-  private PuzzleBoard gui; // Oggetto per gestire la GUI
+  private PuzzleBoard gui;        // Oggetto per gestire la GUI
   
   public Tavoletta(int n){
     
