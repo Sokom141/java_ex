@@ -1,8 +1,11 @@
+import java.util.stream.IntStream;
+
 class LlisLab {
   
   private static int[][] mem;
-  
-  
+  private static IntSList[][][] s_mem;
+  private static final IntSList UNKNOWN = IntSList.NULL_INTLIST;
+    
   public static int llis(int[] s) { //s[i] > 0 per i in [0, n-1], dove n = s.length
     
     mem = new int[s.length+1][s.length+1];
@@ -21,12 +24,7 @@ class LlisLab {
     final int n = s.length;
     int pos = 0;
     
-    for(int k=0;k<n;k++){
-      if(s[k] == t){
-        pos = k + 1;
-        break;
-      }
-    }
+    pos = find(s, t, n) + 1;
     
     if ( m[i][pos] == -1 ) {
       if (i == n) {
@@ -39,18 +37,28 @@ class LlisLab {
     }
     return m[i][pos];
   }
+    
+  private static int find(int[] s, int t, int len) { // metodo privato per trovare l'indice di un elemento nell'array
+   
+    // filter(IntPredicate predicate) -> ritorna uno stream con gli elementi che corrispondono al predicato
+    // findFirst() -> restituisce un OptionalInt con il valore della prima occorrenza corrispondente al predicato
+    // se non viene trovato nulla viene restituito -1 al posto di un OptionalInt vuoto ma in questo programma non 
+    // Ë prevista questa funzionalit‡
+    return IntStream.range(0, len).filter(i -> t == s[i]).findFirst().orElse(-1);
+  }
   
   public static IntSList lis( int[] s ) { // restituisce la lista della sottosequenza pi√π lunga
  
     final int n = s.length;
-    IntSList l = IntSList.NULL_INTLIST;
     
-    IntSList[][][] s_mem = new IntSList[n+1][n+1][n+1];
+    IntSList l = UNKNOWN;
+    
+    s_mem = new IntSList[n+1][n+1][n+1];
     
     for ( int i=0; i<=s.length; i++) {
       for ( int j=0; j<=s.length; j++ ) {
         for( int k=0; k<=s.length; k++) {
-        s_mem[i][j][k] = IntSList.NULL_INTLIST;
+        s_mem[i][j][k] = UNKNOWN;
         }
       }
     }
@@ -64,15 +72,10 @@ class LlisLab {
     
     int p = l.length();
     int pos = 0;
+        
+    pos = find(s, t, n) + 1;
     
-    for(int k=0;k<n;k++){
-      if(s[k] == t){
-        pos = k + 1 ;
-        break;
-      }
-    }
-    
-    if ( m[i][pos][p] == IntSList.NULL_INTLIST ) {
+    if ( m[i][pos][p] == UNKNOWN ) {
       if(i==n) {
         m[i][pos][p] = l.reverse();
       } else if( s[i]<= t) { // caso in cui il numero considerato √® pi√π piccolo (o uguale) a t -> non entra nella lista
@@ -86,7 +89,7 @@ class LlisLab {
     return m[i][pos][p];
   }
   
-  public static IntSList longestIntList( IntSList a, IntSList b) {
+  private static IntSList longestIntList( IntSList a, IntSList b) {
     
     if(a.length() > b.length()){
       
@@ -131,8 +134,15 @@ class LlisLab {
       }
     }
     
-    return "Celle utilizzate: " + utilizzati + "\nCelle libere: " + liberi;
+    return "\nCelle occupate: " + utilizzati + "\nCelle libere: " + liberi;
     
+  }
+  
+  public static void main( String[] args ) { // test main
+    
+    int[] big_array = {412, 2, 9, 3, 312, 414, 18, 19, 147, 20, 21, 138, 481, 100, 516, 410, 41, 432, 45, 21, 46, 54, 421, 71, 99, 41, 512, 241, 60, 47, 0, 741, 876, 1293, 231, 32, 25, 61, 72, 73, 321, 4190, 231, 841, 192, 5617, 4000, 4001, 8, 12, 42, 5000, 67, 50, 51, 52, 124, 81, 48141, 94, 234, 59, 831, 465, 6810, 32, 841, 918, 481, 491, 12, 13, 14, 15, 75, 851, 571, 482};
+    System.out.println( llis(big_array) );
+    System.out.println( lis(big_array) );
   }
     
 }
