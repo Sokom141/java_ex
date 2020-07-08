@@ -73,7 +73,7 @@ class Board{
   
   public String toString() {
    
-    return "<" + arrangement() + ">";
+    return arrangement();
   }
   
   public Board addQueen(int i, int j){

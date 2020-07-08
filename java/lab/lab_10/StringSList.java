@@ -1,4 +1,3 @@
-// completo
 public class StringSList {
   
   public static final StringSList NULL_STRINGLIST = new StringSList();
@@ -13,7 +12,7 @@ public class StringSList {
     rest = null;
   } // costruttore
   
-  public StringSList( String e, StringSList sl ) { // cons
+  public StringSList( String e, StringSList sl ) { // costruttore cons
     
     empty = false;
     first = e;
@@ -35,7 +34,7 @@ public class StringSList {
     return rest;
   }
   
-  public StringSList cons( String e ) { // cons (modalità alternativa)
+  public StringSList cons( String e ) { // cons
     
     return new StringSList( e, this );
   }

@@ -19,7 +19,7 @@ class Board{
     ROWS = IntSList.NULL_INTLIST;
     DgP = IntSList.NULL_INTLIST;
     DgM = IntSList.NULL_INTLIST;
-    config = "< ";
+    config = "";
   }
     
   private Board(int n, int q, IntSList cols, IntSList rows, IntSList dgP, IntSList dgM, String c) {
@@ -73,7 +73,14 @@ class Board{
   
   public String toString() {
    
-    return arrangement() + ">";
+    String s = "< " + size + ", "
+      + queensOn() + ", "
+      + ROWS.reverse() + ", "
+      + COLS.reverse() + ", "
+      + DgM.reverse() + ", "
+      + DgP.reverse() + ", "
+      + arrangement() + ">";
+    return s;
   }
   
   public Board addQueen(int i, int j){
@@ -87,7 +94,7 @@ class Board{
                      (config + " " +
                       COLONNE.substring(i-1, i) +
                       RIGHE.substring(j-1, j) +
-                      " |") );
+                      " ") );
   }
   
 } // class Board

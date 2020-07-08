@@ -4,7 +4,7 @@ class CodificaHuffman{
   
   private static final int CHARS = InputTextFile.CHARS;
   
-  public static void freq(String input_text, String output_text) {
+  public static void freq(String input_text, String output_text) { // Parte 1 
     
     // Codice ASCII | Simbolo Carattere | Occorenze | codice di Huffman | numero di bit
     
@@ -47,7 +47,7 @@ class CodificaHuffman{
     output.close();
   }
   
-  public static void randomGenerator( String dst, int dimensione ) {
+  public static void randomGenerator( String dst, int dimensione ) { // Parte 2
     
     OutputTextFile out = new OutputTextFile(dst);
     
@@ -61,7 +61,7 @@ class CodificaHuffman{
     out.close();
   }
   
-  public static String stima( String src ){
+  public static String stima( String src ){ // Parte 3
     
     
     int[] freq = Huffman.charHistogram( src );                     // istogramma delle frequenze
@@ -81,7 +81,7 @@ class CodificaHuffman{
     
     result /= 7;
     in.close();
-    return "Stima file compresso: " + (header + result) ;
+    return "Stima file compresso: " + ( result + header );
   }
   
 }

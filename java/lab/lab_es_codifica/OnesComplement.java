@@ -18,4 +18,16 @@ public class OnesComplement {
       return "0";
     }
   }
+  
+  public static String onesComplementIter( String bin ) {
+   
+    String result = "";
+    int c = 0;
+    
+    for (int i=0; i<bin.length(); i++ ) {
+      result += bitComplement( bin.substring(c, c+1));
+      c++;
+    }
+    return result;
+  }
 }

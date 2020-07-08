@@ -88,23 +88,18 @@ class LlisLab {
   
   public static IntSList longestIntList( IntSList a, IntSList b) {
     
-    IntSList c = a; // salvo le due liste in due placeholder
-    IntSList d = b; // perchè stanno per essere modificate
-    
-    while((a.length() > 0) && (b.length() > 0)){
-      a = a.cdr();
-      b = b.cdr();
-    }
-    if(a.length() == 0){
+    if(a.length() > b.length()){
       
-      return d;//caso in cui d è più lungo (perchè a si esaurisce prima)
+      return a;
+    } else if (a.length() < b.length()) {
+      
+      return b;
     } else {
-      
-      return c;//caso in cui c è più lungo (perchè b si esaurisce prima)
+      return (Math.random()>=0.5?a:b);
     }
   }
   
-  public static String llisTester(int[] s) { //s[i] > 0 per i in [0, n-1], dove n = s.length
+  public static String llisTester( int[] s ) { //s[i] > 0 per i in [0, n-1], dove n = s.length
     
     mem = new int[s.length+1][s.length+1];
     
